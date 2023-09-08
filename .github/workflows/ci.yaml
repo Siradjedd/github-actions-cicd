@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push: 
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: checkout code
+          uses: actions/checkout@v2
+
+        - name: setup python
+          uses: actions/setup-python@v2
+
+        - name: install requirments
+          run: pip install my-flask-app/src/requirements.txt
+
+        - name: run tests
+          run: pytest tests/
